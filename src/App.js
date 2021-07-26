@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { UserProvider } from "./Contexts/UserContext";
+import { TiersProvider } from "./Contexts/TiersContext";
+import { TeamsGeneralTiersProvider } from "./Contexts/TeamsGeneralTiersContext";
+import { SubTeamsGeneralTiersProvider } from "./Contexts/SubTeamsGeneralTiersContext";
+import { TeamsCategoriesProvider } from "./Contexts/TeamsCategoriesContext";
+import { TeamsProvider } from "./Contexts/TeamsContext";
+import { TournamentsCategoriesProvider } from "./Contexts/TournamentsCategoriesContext";
+import { TournamentsProvider } from "./Contexts/TournamentsContext";
+import { TowersProvider } from "./Contexts/TowersContext";
+import { ForumCategoriesProvider } from "./Contexts/ForumCategoriesContext";
+import { ForumTopicsProvider } from "./Contexts/ForumTopicsContext";
+import { ForumPostsProvider } from "./Contexts/ForumPostsContext";
+import { ThemeProvider } from "./Contexts/ThemeContext";
+import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import Layout from "./Layout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <UserProvider>
+        <TiersProvider>
+          <TeamsGeneralTiersProvider>
+            <SubTeamsGeneralTiersProvider>
+              <TeamsCategoriesProvider>
+                <TeamsProvider>
+                  <TournamentsCategoriesProvider>
+                    <TournamentsProvider>
+                      <TowersProvider>
+                        <ForumCategoriesProvider>
+                          <ForumTopicsProvider>
+                            <ForumPostsProvider>
+                              <ThemeProvider>
+                                <div className="app">
+                                  <Layout />
+                                </div>
+                              </ThemeProvider>
+                            </ForumPostsProvider>
+                          </ForumTopicsProvider>
+                        </ForumCategoriesProvider>
+                      </TowersProvider>
+                    </TournamentsProvider>
+                  </TournamentsCategoriesProvider>
+                </TeamsProvider>
+              </TeamsCategoriesProvider>
+            </SubTeamsGeneralTiersProvider>
+          </TeamsGeneralTiersProvider>
+        </TiersProvider>
+      </UserProvider>
+    </Router>
   );
 }
 

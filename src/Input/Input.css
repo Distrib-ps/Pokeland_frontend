@@ -1,0 +1,43 @@
+.input_container {
+  margin-bottom: 1rem;
+}
+
+.input {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+  outline: none;
+}
+
+.input:disabled {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.input_error {
+  color: var(--error-color);
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.select_container {
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.select_container select {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.textarea {
+  width: 300px;
+  height: 200px;
+}

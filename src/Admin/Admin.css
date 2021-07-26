@@ -1,0 +1,18 @@
+.admin {
+  flex: 1;
+}
+
+.admin .admin_navigation {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.admin .admin_navigation button {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .admin .admin_navigation {
+    margin-top: 2rem;
+  }
+}

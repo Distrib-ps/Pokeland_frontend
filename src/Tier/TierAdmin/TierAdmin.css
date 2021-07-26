@@ -1,0 +1,24 @@
+.tier_admin .tier {
+  padding: 1rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+  margin-top: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tier_admin .tier .tier_navigation {
+  display: flex;
+}
+
+.tier_admin .tier .tier_navigation button:first-child {
+  margin-right: 0.5rem;
+}
+
+.tier_admin .tier_admin_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

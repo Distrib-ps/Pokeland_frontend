@@ -1,0 +1,48 @@
+.user {
+  padding: 1rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+
+  flex: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 1rem;
+}
+
+.user .user_img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+}
+
+.user .user_icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.user .user_icon-light {
+  border: 1px solid var(--main-dark-color);
+}
+
+.user .user_icon-dark {
+  border: 1px solid var(--main-light-color);
+}
+
+.user .user_admin {
+  display: flex;
+}
+
+.user .user_admin button:first-child {
+  margin-right: 0.5rem;
+}

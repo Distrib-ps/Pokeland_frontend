@@ -1,0 +1,71 @@
+@keyframes reverse {
+  0% {
+    left: 30px;
+    width: 20px;
+  }
+  60% {
+    width: 30px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes switch {
+  0% {
+    left: 0px;
+    width: 20px;
+  }
+  60% {
+    width: 30px;
+  }
+  100% {
+    left: 30px;
+  }
+}
+
+.toggle-theme {
+  display: flex;
+}
+
+.toggle-theme .toggle_label {
+  width: 50px;
+  height: 25px;
+  border-radius: 100px;
+  display: flex;
+  position: relative;
+  transition: all 350ms ease-in;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+
+.toggle-theme .toggle_label:before {
+  animation-name: reverse;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+  transition: all 350ms ease-in;
+  content: "";
+  width: 20px;
+  height: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  border-radius: 20px;
+  background-image: url("../images/seleroc.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.toggle-theme .toggle_checkbox {
+  display: none;
+}
+
+.toggle-theme .toggle_checkbox:checked + .toggle_label:before {
+  animation-name: switch;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+  background-image: url("../images/solaroc.png");
+  background-position: center;
+  background-size: cover;
+}

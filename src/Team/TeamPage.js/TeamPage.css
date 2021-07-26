@@ -1,0 +1,49 @@
+.team_page {
+}
+
+.team_page_admin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team_page .team {
+  padding: 1rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+  margin-top: 1rem;
+}
+
+.team_page .team .team_page_content {
+  display: flex;
+  align-items: center;
+}
+
+.team_page .team .team_page_content img {
+  height: 50px;
+}
+
+.team_page .team .team_page_content p {
+  font-size: 12px;
+}
+
+.team_page .team .team_page_content .team_page_content_pokemon {
+  min-width: 70px;
+  text-align: center;
+}
+
+.team_page_content_pokemons {
+  display: flex;
+  justify-content: space-between;
+  flex: 2;
+}
+
+.team_page_admin {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .team_page .team .team_page_content {
+    flex-direction: column;
+  }
+}

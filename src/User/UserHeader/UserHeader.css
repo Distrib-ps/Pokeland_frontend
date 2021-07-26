@@ -1,0 +1,46 @@
+.user_header {
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+}
+
+.user_header .user_header_infos {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user_header .user_header_infos .user_header_pseudo {
+  margin-right: 1rem;
+}
+
+.user_header .user_header_infos .user_header_img {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+}
+
+.user_header .user_header_infos .user_header_icon {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.user_header .user_header_infos .user_header_icon-light {
+  border: 1px solid var(--main-dark-color);
+}
+
+.user_header .user_header_infos .user_header_icon-dark {
+  border: 1px solid var(--main-light-color);
+}
+
+.user_header .user_header_navigation {
+  margin-top: 1rem;
+}
