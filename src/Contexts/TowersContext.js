@@ -13,7 +13,7 @@ const TowersProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          `http://localhost:8000/towers/towers`,
+          `https://pokelandbackend.herokuapp.com/towers/towers`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TowersProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/towers/add",
+          "https://pokelandbackend.herokuapp.com/towers/add",
           body,
           {
             headers: { token: token },
@@ -61,7 +61,7 @@ const TowersProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `http://localhost:8000/towers/update/${id}`,
+          `https://pokelandbackend.herokuapp.com/towers/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -96,9 +96,12 @@ const TowersProvider = ({ children }) => {
   const deleteTower = useCallback(
     async (id, errorCallback, successCallback) => {
       try {
-        await axios.delete(`http://localhost:8000/towers/delete/${id}`, {
-          headers: { token: token },
-        });
+        await axios.delete(
+          `https://pokelandbackend.herokuapp.com/towers/delete/${id}`,
+          {
+            headers: { token: token },
+          }
+        );
         setTowers((prevTowers) => {
           return prevTowers.filter((tower) => tower._id !== id);
         });

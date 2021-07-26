@@ -3,7 +3,7 @@ import { TournamentsCategoriesContext } from "../../Contexts/TournamentsCategori
 import Button from "../../Button/Button";
 import Name from "../../Input/Name";
 
-function AddTeamsCategory({ subTeamsGeneralTier }) {
+function AddTournamentsCategory() {
   const [name, setName] = useState({ value: "", error: true });
   const [error, setError] = useState({ message: "", error: false });
   const [success, setSuccess] = useState({ message: "", success: false });
@@ -40,4 +40,4 @@ function AddTeamsCategory({ subTeamsGeneralTier }) {
   );
 }
 
-export default AddTeamsCategory;
+export default AddTournamentsCategory;

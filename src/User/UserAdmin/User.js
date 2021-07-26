@@ -36,7 +36,7 @@ function User({ userItem }) {
           <span
             className={`user_img`}
             style={{
-              backgroundImage: `url(http://localhost:8000/static/${userItem.profilePicture})`,
+              backgroundImage: `url(https://pokelandbackend.herokuapp.com/static/${userItem.profilePicture})`,
             }}
           ></span>
         )}

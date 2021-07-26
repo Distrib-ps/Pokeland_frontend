@@ -47,7 +47,7 @@ function ForumPost({ forumPost }) {
             <span
               className={`forum_header_img`}
               style={{
-                backgroundImage: `url(http://localhost:8000/static/${author.profilePicture})`,
+                backgroundImage: `url(https://pokelandbackend.herokuapp.com/static/${author.profilePicture})`,
               }}
             ></span>
           )}

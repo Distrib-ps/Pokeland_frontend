@@ -34,7 +34,7 @@ function UserHearder({ error }) {
               <span
                 className={`user_header_img`}
                 style={{
-                  backgroundImage: `url(http://localhost:8000/static/${user.profilePicture})`,
+                  backgroundImage: `url(https://pokelandbackend.herokuapp.com/static/${user.profilePicture})`,
                 }}
               ></span>
             )}

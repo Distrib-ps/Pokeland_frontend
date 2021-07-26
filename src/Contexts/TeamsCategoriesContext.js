@@ -13,7 +13,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (errorCallback, subTeamsGeneralTierId) => {
       try {
         const responseServer = await axios.get(
-          `http://localhost:8000/teams-categories/tiers/${subTeamsGeneralTierId}`,
+          `https://pokelandbackend.herokuapp.com/teams-categories/tiers/${subTeamsGeneralTierId}`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (errorCallback, subTeamsGeneralTierId, setContent) => {
       try {
         const responseServer = await axios.get(
-          `http://localhost:8000/teams-categories/tiers/${subTeamsGeneralTierId}`,
+          `https://pokelandbackend.herokuapp.com/teams-categories/tiers/${subTeamsGeneralTierId}`,
           {
             headers: { token: token },
           }
@@ -49,7 +49,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/teams-categories/add",
+          "https://pokelandbackend.herokuapp.com/teams-categories/add",
           body,
           {
             headers: { token: token },
@@ -79,7 +79,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `http://localhost:8000/teams-categories/update/${id}`,
+          `https://pokelandbackend.herokuapp.com/teams-categories/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -113,7 +113,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `http://localhost:8000/teams-categories/delete/${id}`,
+          `https://pokelandbackend.herokuapp.com/teams-categories/delete/${id}`,
           {
             headers: { token: token },
           }

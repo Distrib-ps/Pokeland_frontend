@@ -15,7 +15,7 @@ function Tower({ tower, onDescription }) {
       <div className={`tower_page_content`}>
         {tower.picture && (
           <img
-            src={`http://localhost:8000/static/${tower.picture}`}
+            src={`https://pokelandbackend.herokuapp.com/static/${tower.picture}`}
             alt="tower"
           />
         )}

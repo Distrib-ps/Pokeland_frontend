@@ -14,7 +14,7 @@ export default function Links() {
   return (
     <ul className="footer_links">
       <li className="footer_link">
-        <a href="https://play.pokemonshowdown.com">
+        <a href="https://play.pokemonshowdown.com/pokeland">
           <FontAwesomeIcon icon={faLink} />
         </a>
       </li>

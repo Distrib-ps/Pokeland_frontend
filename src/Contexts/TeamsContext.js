@@ -13,7 +13,7 @@ const TeamsProvider = ({ children }) => {
     async (errorCallback, teamsCategoryId) => {
       try {
         const responseServer = await axios.get(
-          `http://localhost:8000/teams/teams/${teamsCategoryId}`,
+          `https://pokelandbackend.herokuapp.com/teams/teams/${teamsCategoryId}`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TeamsProvider = ({ children }) => {
     async (errorCallback, teamsCategoryId, setContent) => {
       try {
         const responseServer = await axios.get(
-          `http://localhost:8000/teams/teams/${teamsCategoryId}`,
+          `https://pokelandbackend.herokuapp.com/teams/teams/${teamsCategoryId}`,
           {
             headers: { token: token },
           }
@@ -49,7 +49,7 @@ const TeamsProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          "http://localhost:8000/teams/all",
+          "https://pokelandbackend.herokuapp.com/teams/all",
           {
             headers: { token: token },
           }
@@ -66,7 +66,7 @@ const TeamsProvider = ({ children }) => {
   const getTeam = useCallback(async (errorCallback, setContent, idPokepast) => {
     try {
       const responseServer = await axios.get(
-        `http://localhost:8000/teams/team/${idPokepast}`
+        `https://pokelandbackend.herokuapp.com/teams/team/${idPokepast}`
       );
 
       const imagesSrc = responseServer.data.content.images.map((image) => {
@@ -98,7 +98,7 @@ const TeamsProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/teams/add",
+          "https://pokelandbackend.herokuapp.com/teams/add",
           body,
           {
             headers: { token: token },
@@ -128,7 +128,7 @@ const TeamsProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `http://localhost:8000/teams/update/${id}`,
+          `https://pokelandbackend.herokuapp.com/teams/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -166,9 +166,12 @@ const TeamsProvider = ({ children }) => {
   const deleteTeam = useCallback(
     async (id, errorCallback, successCallback) => {
       try {
-        await axios.delete(`http://localhost:8000/teams/delete/${id}`, {
-          headers: { token: token },
-        });
+        await axios.delete(
+          `https://pokelandbackend.herokuapp.com/teams/delete/${id}`,
+          {
+            headers: { token: token },
+          }
+        );
         setTeams((prevTeams) => {
           return prevTeams.filter((teams) => teams._id !== id);
         });

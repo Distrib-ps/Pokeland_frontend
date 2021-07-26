@@ -13,7 +13,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (errorCallback, forumCategoryId) => {
       try {
         const responseServer = await axios.get(
-          `http://localhost:8000/forum-topics/topic/${forumCategoryId}`,
+          `https://pokelandbackend.herokuapp.com/forum-topics/topic/${forumCategoryId}`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          "http://localhost:8000/forum-topics/all",
+          "https://pokelandbackend.herokuapp.com/forum-topics/all",
           {
             headers: { token: token },
           }
@@ -49,7 +49,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/forum-topics/add",
+          "https://pokelandbackend.herokuapp.com/forum-topics/add",
           body,
           {
             headers: { token: token },
@@ -78,7 +78,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `http://localhost:8000/forum-topics/update/${id}`,
+          `https://pokelandbackend.herokuapp.com/forum-topics/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -115,9 +115,12 @@ const ForumTopicsProvider = ({ children }) => {
   const deleteForumTopic = useCallback(
     async (id, errorCallback, successCallback) => {
       try {
-        await axios.delete(`http://localhost:8000/forum-topics/delete/${id}`, {
-          headers: { token: token },
-        });
+        await axios.delete(
+          `https://pokelandbackend.herokuapp.com/forum-topics/delete/${id}`,
+          {
+            headers: { token: token },
+          }
+        );
         setForumTopics((prevForumTopics) => {
           return prevForumTopics.filter(
             (forumTopics) => forumTopics._id !== id
