@@ -4,6 +4,14 @@
   border-radius: 30px;
 }
 
+.light .form {
+  background-color: var(--main-light-color);
+}
+
+.dark .form {
+  background-color: var(--main-dark-color);
+}
+
 .form form {
   margin-bottom: 1rem;
 }
