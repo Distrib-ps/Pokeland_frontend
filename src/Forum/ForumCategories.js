@@ -34,7 +34,7 @@ function ForumCategories({ onClick, resetCategories }) {
         </h3>
         {user &&
           (user.role === "Owner" ||
-            user.role === "Rédacteur" ||
+            user.role === "Driver" ||
             user.role === "Moderateur") && (
             <Button
               onClick={() => {

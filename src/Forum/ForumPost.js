@@ -54,7 +54,7 @@ function ForumPost({ forumPost }) {
         <p className={``}>{forumPost.date}</p>
         {user &&
           (user.role === "Owner" ||
-            user.role === "Rédacteur" ||
+            user.role === "Driver" ||
             user.role === "Moderateur" ||
             user._id === forumPost.userId) && (
             <>

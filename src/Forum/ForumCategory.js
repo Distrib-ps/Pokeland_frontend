@@ -30,7 +30,7 @@ function ForumCategory({ forumCategory, onClick }) {
         <p className={`forum_category_title`}>{forumCategory.name}</p>
         {user &&
           (user.role === "Owner" ||
-            user.role === "Rédacteur" ||
+            user.role === "Driver" ||
             user.role === "Moderateur") && (
             <>
               <Button onClick={() => setPopUp(true)}>

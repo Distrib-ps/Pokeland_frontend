@@ -62,7 +62,7 @@ function ForumTopic({ forumTopic }) {
         <Button onClick={handleDescription}>Description</Button>
         {user &&
           (user.role === "Owner" ||
-            user.role === "Rédacteur" ||
+            user.role === "Driver" ||
             user.role === "Moderateur" ||
             user._id === forumTopic.userId) && (
             <>
