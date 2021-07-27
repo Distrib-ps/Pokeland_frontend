@@ -14,7 +14,7 @@ const ForumTopicsProvider = ({ children }) => {
       console.log(forumCategoryId);
       try {
         const responseServer = await axios.get(
-          `http://localhost:8000/forum-topics/topic/${forumCategoryId}`,
+          `https://pokelandbackend.herokuapp.com/forum-topics/topic/${forumCategoryId}`,
           {
             headers: { token: token },
           }
