@@ -13,7 +13,7 @@ function Towers({ onDescription }) {
 
   return (
     <div className={`home_page_tower`}>
-      <h2>Tours de Combat</h2>
+      <h2>Actualités</h2>
       {towers &&
         towers.length !== 0 &&
         towers.map((tower) => {
@@ -25,7 +25,7 @@ function Towers({ onDescription }) {
             />
           );
         })}
-      {error && <p>Le chargement des Tours de combat a échoué.</p>}
+      {error && <p>Le chargement des Actualités a échoué.</p>}
     </div>
   );
 }

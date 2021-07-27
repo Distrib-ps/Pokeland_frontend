@@ -72,6 +72,14 @@ a {
   color: var(--main-light-color);
 }
 
+.light option {
+  color: var(--main-dark-color);
+}
+
+.dark option {
+  color: var(--main-dark-color);
+}
+
 .layout {
   margin: 0;
   padding: 0.5rem;
@@ -109,4 +117,8 @@ a {
   background-color: var(--main-dark-color); /* color of the scroll thumb */
   border-radius: 20px; /* roundness of the scroll thumb */
   border: 2px solid var(--main-light-color); /* creates padding around scroll thumb */
+}
+
+.ck.ck-editor__main {
+  color: var(--main-dark-color);
 }

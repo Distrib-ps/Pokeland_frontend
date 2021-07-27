@@ -2,18 +2,24 @@ import { useState, useEffect } from "react";
 
 export default function ForumSelect({ optionsList, onChange }) {
   // STATE
-  const [value, setValue] = useState({ name: "", id: "" });
+  const [value, setValue] = useState({ name: "" });
 
   useEffect(() => {
     if (optionsList.length !== 0) {
-      setValue({ name: optionsList[0].name, id: optionsList[0]._id });
+      setValue({ name: optionsList[0].name });
       onChange({ name: optionsList[0].name, id: optionsList[0]._id });
     }
   }, [setValue, optionsList, onChange]);
 
   const handleChange = (e) => {
-    setValue({ name: e.target.value, id: e.target.key });
-    onChange({ name: e.target.value, id: e.target.key });
+    setValue({ name: e.target.value });
+    onChange({
+      name: e.target.value,
+      id: optionsList
+        ? optionsList.filter((element) => element.name === e.target.value)[0]
+            ._id
+        : "",
+    });
   };
 
   return (

@@ -21,7 +21,7 @@ function TowersAdmin() {
     <div className={`tower_admin`}>
       {!form && (
         <div className={`tower_admin_header`}>
-          <h3>Ajouter une Tour de combat</h3>
+          <h3>Ajouter une Actualité</h3>
           <Button
             onClick={() => {
               setForm(!form);
@@ -44,7 +44,7 @@ function TowersAdmin() {
         </div>
       )}
       {form && <AddTower />}
-      {error && <p>Le chargement de la liste des Tour de combat a échoué.</p>}
+      {error && <p>Le chargement de la liste des Actualités a échoué.</p>}
       {towers &&
         towers.length !== 0 &&
         towers.map((tower) => {

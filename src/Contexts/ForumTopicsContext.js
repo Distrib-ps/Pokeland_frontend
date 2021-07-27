@@ -11,13 +11,15 @@ const ForumTopicsProvider = ({ children }) => {
 
   const getForumTopics = useCallback(
     async (errorCallback, forumCategoryId) => {
+      console.log(forumCategoryId);
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/forum-topics/topic/${forumCategoryId}`,
+          `http://localhost:8000/forum-topics/topic/${forumCategoryId}`,
           {
             headers: { token: token },
           }
         );
+        console.log(responseServer.data);
         setForumTopics(responseServer.data);
         errorCallback(false);
       } catch (err) {
