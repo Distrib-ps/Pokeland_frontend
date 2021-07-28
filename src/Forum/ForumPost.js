@@ -51,6 +51,7 @@ function ForumPost({ forumPost }) {
               }}
             ></span>
           )}
+        {author && <p>{author.pseudo}</p>}
         <p className={``}>{forumPost.date}</p>
         {user &&
           (user.role === "Owner" ||

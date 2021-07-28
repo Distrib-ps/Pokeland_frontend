@@ -57,6 +57,7 @@ function ForumTopic({ forumTopic }) {
               }}
             ></span>
           )}
+        {author && <p>{author.pseudo}</p>}
         <h3 className={``}>{forumTopic.title}</h3>
         <p className={``}>{forumTopic.date}</p>
         <Button onClick={handleDescription}>Description</Button>
