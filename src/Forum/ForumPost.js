@@ -2,20 +2,19 @@ import { useState, useContext, useEffect } from "react";
 import Button from "../Button/Button";
 import parse from "html-react-parser";
 import { UserContext } from "../Contexts/UserContext";
-import { ForumPostsContext } from "../Contexts/ForumPostsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEdit, faTimes } from "@fortawesome/free-solid-svg-icons";
 import UpdateForumPostPopUp from "../Form/Forum/UpdateForumPostPopUp";
+import ForumPostDeletePopUp from "../Form/Forum/ForumPostDeletePopUp";
 
 function ForumPost({ forumPost }) {
   const [author, setAuthor] = useState(null);
   const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
 
+  const [popupDelete, setPopupDelete] = useState(null);
   const [popup, setPopUp] = useState(false);
 
   const { getUserById, user } = useContext(UserContext);
-  const { deleteForumPost } = useContext(ForumPostsContext);
 
   useEffect(() => {
     getUserById(setError, forumPost.userId, setAuthor);
@@ -23,6 +22,10 @@ function ForumPost({ forumPost }) {
 
   const closePopUp = () => {
     setPopUp(false);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   return (
@@ -64,7 +67,7 @@ function ForumPost({ forumPost }) {
               </Button>
               <Button
                 onClick={() => {
-                  deleteForumPost(forumPost._id, setError, setSuccess);
+                  setPopupDelete(true);
                 }}
               >
                 <FontAwesomeIcon icon={faTimes} />
@@ -74,9 +77,14 @@ function ForumPost({ forumPost }) {
       </div>
       <div className={`post_description`}>{parse(forumPost.description)}</div>
       {error.error && <p className={`form_error`}>{error.message}</p>}
-      {success.success && <p>{success.message}</p>}
       {popup && (
         <UpdateForumPostPopUp forumPost={forumPost} closePopUp={closePopUp} />
+      )}
+      {popupDelete && (
+        <ForumPostDeletePopUp
+          closePopUp={handleClosePopUpDelete}
+          forumPostId={forumPost._id}
+        />
       )}
     </div>
   );

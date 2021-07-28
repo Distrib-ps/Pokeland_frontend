@@ -1,23 +1,23 @@
 import { useState, useContext } from "react";
 import Button from "../../Button/Button";
-import { ForumCategoriesContext } from "../../Contexts/ForumCategoriesContext";
+import { ForumTopicsContext } from "../../Contexts/ForumTopicsContext";
 
-function ForumCategoryDeletePopUp({ closePopUp, forumCategoryId }) {
+function ForumTopicDeletePopUp({ closePopUp, forumTopicId }) {
   const [error, setError] = useState({ message: "", error: false });
+  const [success, setSuccess] = useState({ message: "", success: false });
 
-  const { deleteForumCategory } = useContext(ForumCategoriesContext);
+  const { deleteForumTopic } = useContext(ForumTopicsContext);
 
   return (
     <div className={`form_popup`}>
       <div className={`form_popup_content form_popup-light`}>
         <p>
-          Vous êtes sur le point de supprimer la catégorie, voulez vous
-          continuer ?
+          Vous êtes sur le point de supprimer le Topic, voulez vous continuer ?
         </p>
         <div className={`form_popup_navigation`}>
           <Button
             onClick={() => {
-              deleteForumCategory(forumCategoryId, setError);
+              deleteForumTopic(forumTopicId, setError, setSuccess);
             }}
           >
             Confirmer
@@ -26,8 +26,9 @@ function ForumCategoryDeletePopUp({ closePopUp, forumCategoryId }) {
         </div>
       </div>
       {error.error && <p className={`form_error`}>{error.message}</p>}
+      {success.success && <p>{success.message}</p>}
     </div>
   );
 }
 
-export default ForumCategoryDeletePopUp;
+export default ForumTopicDeletePopUp;

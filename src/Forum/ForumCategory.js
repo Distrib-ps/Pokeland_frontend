@@ -3,18 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../Contexts/UserContext";
-import { ForumCategoriesContext } from "../Contexts/ForumCategoriesContext";
 import Button from "../Button/Button";
 import UpdateForumCategoryPopUp from "../Form/Forum/UpdateForumCategoryPopUp";
+import ForumCategoryDeletePopUp from "../Form/Forum/ForumCategoryDeletePopUp";
 
 function ForumCategory({ forumCategory, onClick }) {
-  const [error, setError] = useState(false);
+  const [popupDelete, setPopupDelete] = useState(null);
   const [popup, setPopUp] = useState(false);
   const { user } = useContext(UserContext);
-  const { deleteForumCategory } = useContext(ForumCategoriesContext);
 
   const handleClosePopUp = () => {
     setPopUp(false);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   const handleClick = (e) => {
@@ -38,7 +41,7 @@ function ForumCategory({ forumCategory, onClick }) {
               </Button>
               <Button
                 onClick={() => {
-                  deleteForumCategory(forumCategory._id, setError);
+                  setPopupDelete(true);
                 }}
               >
                 <FontAwesomeIcon icon={faTimes} />
@@ -46,11 +49,16 @@ function ForumCategory({ forumCategory, onClick }) {
             </>
           )}
       </div>
-      {error && <p>Erreur</p>}
       {popup && (
         <UpdateForumCategoryPopUp
           forumCategory={forumCategory}
           closePopUp={handleClosePopUp}
+        />
+      )}
+      {popupDelete && (
+        <ForumCategoryDeletePopUp
+          closePopUp={handleClosePopUpDelete}
+          forumCategoryId={forumCategory._id}
         />
       )}
     </div>

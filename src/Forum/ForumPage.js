@@ -8,8 +8,9 @@ function ForumPage() {
 
   const handleCategoryID = (e, forumCategory) => {
     if (
-      e.target.className.includes("forum_category ") ||
-      e.target.className === "forum_category_title"
+      e.target.className &&
+      (e.target.className.includes("forum_category ") ||
+        e.target.className === "forum_category_title")
     ) {
       setCategoryID(forumCategory._id);
     }
