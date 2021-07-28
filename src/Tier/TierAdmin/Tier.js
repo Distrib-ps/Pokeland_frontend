@@ -1,20 +1,21 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
 import TierUpdatePopUp from "../../Form/Tier/TierUpdatePopUp";
-import { TiersContext } from "../../Contexts/TiersContext";
+import TierDeletePopUp from "../../Form/Tier/TierDeletePopUp";
 
 function Tier({ tier }) {
   const [popup, setPopup] = useState(null);
-  const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
-
-  const { deleteTier } = useContext(TiersContext);
+  const [popupDelete, setPopupDelete] = useState(null);
 
   const handleClosePopUp = () => {
     setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   return (
@@ -32,15 +33,19 @@ function Tier({ tier }) {
         </Button>
         <Button
           onClick={() => {
-            deleteTier(tier._id, setError, setSuccess);
+            setPopupDelete(true);
           }}
         >
           <FontAwesomeIcon icon={faTimes} />
         </Button>
       </div>
-      {error.error && <p className={`form_error`}>{error.message}</p>}
-      {success.success && <p>{success.message}</p>}
       {popup && <TierUpdatePopUp closePopUp={handleClosePopUp} tier={tier} />}
+      {popupDelete && (
+        <TierDeletePopUp
+          closePopUp={handleClosePopUpDelete}
+          tierId={tier._id}
+        />
+      )}
     </div>
   );
 }

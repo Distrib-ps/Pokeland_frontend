@@ -13,7 +13,7 @@ const ForumPostsProvider = ({ children }) => {
     async (errorCallback, topicId) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/posts/${topicId}`,
+          `https://pokelandbackend.herokuapp.com/forum-posts/posts/${topicId}`,
           {
             headers: { token: token },
           }

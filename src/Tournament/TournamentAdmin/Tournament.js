@@ -1,20 +1,21 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
 import TournamentUpdatePopUp from "../../Form/Tournament/TournamentUpdatePopUp";
-import { TournamentsContext } from "../../Contexts/TournamentsContext";
+import TournamentDeletePopUp from "../../Form/Tournament/TournamentDeletePopUp";
 
 function Tournaments({ tournament }) {
   const [popup, setPopup] = useState(null);
-  const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
-
-  const { deleteTournament } = useContext(TournamentsContext);
+  const [popupDelete, setPopupDelete] = useState(null);
 
   const handleClosePopUp = () => {
     setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   return (
@@ -31,18 +32,22 @@ function Tournaments({ tournament }) {
           </Button>
           <Button
             onClick={() => {
-              deleteTournament(tournament._id, setError, setSuccess);
+              setPopupDelete(true);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
           </Button>
         </div>
-        {error.error && <p className={`form_error`}>{error.message}</p>}
-        {success.success && <p>{success.message}</p>}
         {popup && (
           <TournamentUpdatePopUp
             closePopUp={handleClosePopUp}
             tournament={tournament}
+          />
+        )}
+        {popupDelete && (
+          <TournamentDeletePopUp
+            closePopUp={handleClosePopUpDelete}
+            tournamentId={tournament._id}
           />
         )}
       </div>

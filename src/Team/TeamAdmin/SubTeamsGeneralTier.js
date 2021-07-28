@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
 import SubTeamsGenenralTierUpdatePopUp from "../../Form/Team/SubTeamsGeneralTierUpdatePopup";
-import { SubTeamsGeneralTiersContext } from "../../Contexts/SubTeamsGeneralTiersContext";
 import TeamsCategoriesAdmin from "./TeamsCategoriesAdmin";
+import SubTeamsGeneralTierDeletePopUp from "../../Form/Team/SubTeamsGeneralTierDeletePopUp";
 
 function SubTeamsGeneralTier({
   subTeamsGeneralTier,
@@ -13,13 +13,14 @@ function SubTeamsGeneralTier({
   subTeamsGeneralTierDescription,
 }) {
   const [popup, setPopup] = useState(null);
-  const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
-
-  const { deleteSubTeamsGeneralTier } = useContext(SubTeamsGeneralTiersContext);
+  const [popupDelete, setPopupDelete] = useState(null);
 
   const handleClosePopUp = () => {
     setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   const handleClick = () => {
@@ -41,22 +42,22 @@ function SubTeamsGeneralTier({
           </Button>
           <Button
             onClick={() => {
-              deleteSubTeamsGeneralTier(
-                subTeamsGeneralTier._id,
-                setError,
-                setSuccess
-              );
+              setPopupDelete(true);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
           </Button>
         </div>
-        {error.error && <p className={`form_error`}>{error.message}</p>}
-        {success.success && <p>{success.message}</p>}
         {popup && (
           <SubTeamsGenenralTierUpdatePopUp
             closePopUp={handleClosePopUp}
             subTeamsGeneralTier={subTeamsGeneralTier}
+          />
+        )}
+        {popupDelete && (
+          <SubTeamsGeneralTierDeletePopUp
+            closePopUp={handleClosePopUpDelete}
+            subTeamsGeneralTierId={subTeamsGeneralTier._id}
           />
         )}
       </div>

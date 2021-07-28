@@ -1,20 +1,21 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
 import TowerUpdatePopUp from "../../Form/Tower/TowerUpdatePopUp";
-import { TowersContext } from "../../Contexts/TowersContext";
+import TowerDeletePopUp from "../../Form/Tower/TowerDeletePopUp";
 
 function Tower({ tower }) {
   const [popup, setPopup] = useState(null);
-  const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
-
-  const { deleteTower } = useContext(TowersContext);
+  const [popupDelete, setPopupDelete] = useState(null);
 
   const handleClosePopUp = () => {
     setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   return (
@@ -31,16 +32,20 @@ function Tower({ tower }) {
           </Button>
           <Button
             onClick={() => {
-              deleteTower(tower._id, setError, setSuccess);
+              setPopupDelete(true);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
           </Button>
         </div>
-        {error.error && <p className={`form_error`}>{error.message}</p>}
-        {success.success && <p>{success.message}</p>}
         {popup && (
           <TowerUpdatePopUp closePopUp={handleClosePopUp} tower={tower} />
+        )}
+        {popupDelete && (
+          <TowerDeletePopUp
+            closePopUp={handleClosePopUpDelete}
+            towerId={tower._id}
+          />
         )}
       </div>
     </>

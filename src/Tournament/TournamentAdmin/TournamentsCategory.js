@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
 import TournamentsCategoryUpdatePopUp from "../../Form/Tournament/TournamentsCategoryUpdatePopUp";
-import { TournamentsCategoriesContext } from "../../Contexts/TournamentsCategoriesContext";
 import TournamentAdmin from "./TournamentAdmin";
+import TournamentsCategoryDeletePopUp from "../../Form/Tournament/TournamentCategoryDeletePopUp";
 
 function TournamentsCategory({
   tournamentsCategory,
@@ -13,15 +13,14 @@ function TournamentsCategory({
   tournamentsCategoryDescription,
 }) {
   const [popup, setPopup] = useState(null);
-  const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
-
-  const { deleteTournamentsCategory } = useContext(
-    TournamentsCategoriesContext
-  );
+  const [popupDelete, setPopupDelete] = useState(null);
 
   const handleClosePopUp = () => {
     setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   const handleClick = () => {
@@ -43,22 +42,22 @@ function TournamentsCategory({
           </Button>
           <Button
             onClick={() => {
-              deleteTournamentsCategory(
-                tournamentsCategory._id,
-                setError,
-                setSuccess
-              );
+              setPopupDelete(true);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
           </Button>
         </div>
-        {error.error && <p className={`form_error`}>{error.message}</p>}
-        {success.success && <p>{success.message}</p>}
         {popup && (
           <TournamentsCategoryUpdatePopUp
             closePopUp={handleClosePopUp}
             tournamentsCategory={tournamentsCategory}
+          />
+        )}
+        {popupDelete && (
+          <TournamentsCategoryDeletePopUp
+            closePopUp={handleClosePopUpDelete}
+            tournamentsCategoryId={tournamentsCategory._id}
           />
         )}
       </div>

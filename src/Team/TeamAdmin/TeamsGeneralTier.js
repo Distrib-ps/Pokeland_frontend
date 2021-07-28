@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
 import TeamGenenralTierUpdatePopUp from "../../Form/Team/TeamsGeneralTierUpdatePopUp";
-import { TeamsGeneralTiersContext } from "../../Contexts/TeamsGeneralTiersContext";
 import SubTeamsGeneralTiersAdmin from "./SubTeamsGeneralAdmin";
+import TeamsGeneralTierDeletePopUp from "../../Form/Team/TeamsGeneralTierDeletePopUp";
 
 function TeamsGeneralTier({
   teamsGeneralTier,
@@ -13,13 +13,14 @@ function TeamsGeneralTier({
   teamsGeneralTierDescription,
 }) {
   const [popup, setPopup] = useState(null);
-  const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
-
-  const { deleteTeamsGeneralTier } = useContext(TeamsGeneralTiersContext);
+  const [popupDelete, setPopupDelete] = useState(null);
 
   const handleClosePopUp = () => {
     setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   const handleClick = () => {
@@ -41,22 +42,22 @@ function TeamsGeneralTier({
           </Button>
           <Button
             onClick={() => {
-              deleteTeamsGeneralTier(
-                teamsGeneralTier._id,
-                setError,
-                setSuccess
-              );
+              setPopupDelete(true);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
           </Button>
         </div>
-        {error.error && <p className={`form_error`}>{error.message}</p>}
-        {success.success && <p>{success.message}</p>}
         {popup && (
           <TeamGenenralTierUpdatePopUp
             closePopUp={handleClosePopUp}
             teamsGeneralTier={teamsGeneralTier}
+          />
+        )}
+        {popupDelete && (
+          <TeamsGeneralTierDeletePopUp
+            closePopUp={handleClosePopUpDelete}
+            teamsGeneralTierId={teamsGeneralTier._id}
           />
         )}
       </div>

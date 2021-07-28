@@ -1,20 +1,21 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./User.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
-import { UserContext } from "../../Contexts/UserContext";
 import UserUpdatePopUp from "../../Form/User/UserUpdatePopUp";
+import UserListDeletePopUp from "../../Form/User/UserListDeletePopUp";
 
 function User({ userItem }) {
-  const [error, setError] = useState({ message: "", error: false });
-  const [success, setSuccess] = useState({ message: "", success: false });
   const [popup, setPopup] = useState(null);
-
-  const { deleteUserList } = useContext(UserContext);
+  const [popupDelete, setPopupDelete] = useState(null);
 
   const handleClosePopUp = () => {
     setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   return (
@@ -51,17 +52,21 @@ function User({ userItem }) {
           </Button>
           <Button
             onClick={() => {
-              deleteUserList(userItem._id, setError, setSuccess);
+              setPopupDelete(true);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
           </Button>
         </div>
       </div>
-      {error.error && <p className={`form_error`}>{error.message}</p>}
-      {success.success && <p>{success.message}</p>}
       {popup && (
         <UserUpdatePopUp user={userItem} closePopUp={handleClosePopUp} />
+      )}
+      {popupDelete && (
+        <UserListDeletePopUp
+          closePopUp={handleClosePopUpDelete}
+          userId={userItem._id}
+        />
       )}
     </>
   );
