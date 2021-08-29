@@ -13,7 +13,7 @@ const TournamentsCategoriesProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/tournaments-categories/tournaments`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments-categories/tournaments`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TournamentsCategoriesProvider = ({ children }) => {
     async (errorCallback, setContent) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/tournaments-categories/tournaments`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments-categories/tournaments`,
           {
             headers: { token: token },
           }
@@ -49,7 +49,7 @@ const TournamentsCategoriesProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/tournaments-categories/add",
+          "https://pokelandbackend-server.herokuapp.com/tournaments-categories/add",
           body,
           {
             headers: { token: token },
@@ -79,7 +79,7 @@ const TournamentsCategoriesProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/tournaments-categories/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments-categories/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -115,7 +115,7 @@ const TournamentsCategoriesProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/tournaments-categories/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments-categories/delete/${id}`,
           {
             headers: { token: token },
           }

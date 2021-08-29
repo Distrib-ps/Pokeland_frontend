@@ -14,7 +14,7 @@ function Tournament({ tournament }) {
       <div className={`tournament_page_content`}>
         {tournament.picture && (
           <img
-            src={`https://pokelandbackend.herokuapp.com/static/${tournament.picture}`}
+            src={`https://pokelandbackend-server.herokuapp.com/static/${tournament.picture}`}
             alt="tournament"
           />
         )}

@@ -13,7 +13,7 @@ const ForumPostsProvider = ({ children }) => {
     async (errorCallback, topicId) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/forum-posts/posts/${topicId}`,
+          `https://pokelandbackend-server.herokuapp.com/forum-posts/posts/${topicId}`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const ForumPostsProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/forum-posts/add",
+          "https://pokelandbackend-server.herokuapp.com/forum-posts/add",
           body,
           {
             headers: { token: token },
@@ -61,7 +61,7 @@ const ForumPostsProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/forum-posts/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/forum-posts/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -99,7 +99,7 @@ const ForumPostsProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/forum-posts/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/forum-posts/delete/${id}`,
           {
             headers: { token: token },
           }

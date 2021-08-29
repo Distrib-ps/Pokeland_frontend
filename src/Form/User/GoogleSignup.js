@@ -10,7 +10,7 @@ function GoogleSignup({ onError, onSuccess }) {
   const postUserSignup = async (body) => {
     try {
       const response = await axios.post(
-        "https://pokelandbackend.herokuapp.com/user/signup/google",
+        "https://pokelandbackend-server.herokuapp.com/user/signup/google",
         body
       );
       const token = response.data.token;

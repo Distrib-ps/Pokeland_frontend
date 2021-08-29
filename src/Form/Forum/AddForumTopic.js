@@ -43,8 +43,6 @@ function AddForumTopic() {
     }
   };
 
-  console.log(category);
-
   return (
     <div className={``}>
       <div className={`form_header`}>

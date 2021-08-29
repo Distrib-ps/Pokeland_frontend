@@ -17,7 +17,7 @@ const UserProvider = ({ children }) => {
   const getUserById = useCallback(async (errorCallback, userId, setAuthor) => {
     try {
       const response = await axios.get(
-        `https://pokelandbackend.herokuapp.com/user/user/${userId}`,
+        `https://pokelandbackend-server.herokuapp.com/user/user/${userId}`,
         {}
       );
       setAuthor(response.data);
@@ -30,7 +30,7 @@ const UserProvider = ({ children }) => {
   const getUser = useCallback(async (token, errorCallback) => {
     try {
       const response = await axios.get(
-        "https://pokelandbackend.herokuapp.com/user/profile",
+        "https://pokelandbackend-server.herokuapp.com/user/profile",
         {
           headers: { token: token },
         }
@@ -45,7 +45,7 @@ const UserProvider = ({ children }) => {
   const getUsers = useCallback(async (token, errorCallback) => {
     try {
       const response = await axios.get(
-        "https://pokelandbackend.herokuapp.com/user/all",
+        "https://pokelandbackend-server.herokuapp.com/user/all",
         {
           headers: { token: token },
         }
@@ -61,7 +61,7 @@ const UserProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/user/signin/form",
+          "https://pokelandbackend-server.herokuapp.com/user/signin/form",
           body
         );
         const token = response.data.token;
@@ -90,7 +90,7 @@ const UserProvider = ({ children }) => {
     async (token, body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/user/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/user/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -128,7 +128,7 @@ const UserProvider = ({ children }) => {
     async (token, body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/user/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/user/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -164,7 +164,7 @@ const UserProvider = ({ children }) => {
   const signupUser = async (body, errorCallback, successCallback) => {
     try {
       const response = await axios.post(
-        "https://pokelandbackend.herokuapp.com/user/signup/form",
+        "https://pokelandbackend-server.herokuapp.com/user/signup/form",
         body
       );
       const token = response.data.token;
@@ -191,7 +191,7 @@ const UserProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/user/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/user/delete/${id}`,
           {
             headers: { token: token },
           }
@@ -222,7 +222,7 @@ const UserProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/user/delete-list/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/user/delete-list/${id}`,
           {
             headers: { token: token },
           }

@@ -8,7 +8,7 @@ class MyUploadAdapter {
     // CKEditor 5's FileLoader instance.
     this.loader = props;
     // URL where to send files.
-    this.url = `https://pokelandbackend.herokuapp.com/files`;
+    this.url = `https://pokelandbackend-server.herokuapp.com/files`;
   }
 
   // Starts the upload process.

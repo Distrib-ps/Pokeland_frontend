@@ -13,7 +13,7 @@ const TowersProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/towers/towers`,
+          `https://pokelandbackend-server.herokuapp.com/towers/towers`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TowersProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/towers/add",
+          "https://pokelandbackend-server.herokuapp.com/towers/add",
           body,
           {
             headers: { token: token },
@@ -61,7 +61,7 @@ const TowersProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/towers/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/towers/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -97,7 +97,7 @@ const TowersProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/towers/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/towers/delete/${id}`,
           {
             headers: { token: token },
           }

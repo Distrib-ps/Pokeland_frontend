@@ -83,7 +83,7 @@ function UserUpdatePopUp({ user, closePopUp }) {
                 <span
                   className={`user_profile_img`}
                   style={{
-                    backgroundImage: `url(https://pokelandbackend.herokuapp.com/static/${user.profilePicture})`,
+                    backgroundImage: `url(https://pokelandbackend-server.herokuapp.com/static/${user.profilePicture})`,
                   }}
                 ></span>
               )}

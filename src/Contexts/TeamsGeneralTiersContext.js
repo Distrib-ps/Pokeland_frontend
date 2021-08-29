@@ -13,7 +13,7 @@ const TeamsGeneralTiersProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          "https://pokelandbackend.herokuapp.com/teams-general-tiers/tiers",
+          "https://pokelandbackend-server.herokuapp.com/teams-general-tiers/tiers",
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TeamsGeneralTiersProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/teams-general-tiers/add",
+          "https://pokelandbackend-server.herokuapp.com/teams-general-tiers/add",
           body,
           {
             headers: { token: token },
@@ -61,7 +61,7 @@ const TeamsGeneralTiersProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/teams-general-tiers/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/teams-general-tiers/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -95,7 +95,7 @@ const TeamsGeneralTiersProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/teams-general-tiers/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/teams-general-tiers/delete/${id}`,
           {
             headers: { token: token },
           }

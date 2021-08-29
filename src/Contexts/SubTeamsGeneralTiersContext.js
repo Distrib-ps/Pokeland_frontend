@@ -13,7 +13,7 @@ const SubTeamsGeneralTiersProvider = ({ children }) => {
     async (errorCallback, teamsGeneralTierId) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/sub-teams-general-tiers/tiers/${teamsGeneralTierId}`,
+          `https://pokelandbackend-server.herokuapp.com/sub-teams-general-tiers/tiers/${teamsGeneralTierId}`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const SubTeamsGeneralTiersProvider = ({ children }) => {
     async (errorCallback, teamsGeneralTierId, setContent) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/sub-teams-general-tiers/tiers/${teamsGeneralTierId}`,
+          `https://pokelandbackend-server.herokuapp.com/sub-teams-general-tiers/tiers/${teamsGeneralTierId}`,
           {
             headers: { token: token },
           }
@@ -49,7 +49,7 @@ const SubTeamsGeneralTiersProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/sub-teams-general-tiers/add",
+          "https://pokelandbackend-server.herokuapp.com/sub-teams-general-tiers/add",
           body,
           {
             headers: { token: token },
@@ -79,7 +79,7 @@ const SubTeamsGeneralTiersProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/sub-teams-general-tiers/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/sub-teams-general-tiers/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -114,7 +114,7 @@ const SubTeamsGeneralTiersProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/sub-teams-general-tiers/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/sub-teams-general-tiers/delete/${id}`,
           {
             headers: { token: token },
           }

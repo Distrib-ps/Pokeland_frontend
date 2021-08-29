@@ -13,7 +13,7 @@ const TiersProvider = ({ children }) => {
   const getTier = useCallback(async (errorCallback, usage) => {
     try {
       const response = await axios.get(
-        `https://pokelandbackend.herokuapp.com/tiers/tier/${usage}`
+        `https://pokelandbackend-server.herokuapp.com/tiers/tier/${usage}`
       );
       setTier(response.data);
       errorCallback(false);
@@ -26,7 +26,7 @@ const TiersProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          "https://pokelandbackend.herokuapp.com/tiers/tiers",
+          "https://pokelandbackend-server.herokuapp.com/tiers/tiers",
           {
             headers: { token: token },
           }
@@ -44,7 +44,7 @@ const TiersProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/tiers/add",
+          "https://pokelandbackend-server.herokuapp.com/tiers/add",
           body,
           {
             headers: { token: token },
@@ -73,7 +73,7 @@ const TiersProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/tiers/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/tiers/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -108,7 +108,7 @@ const TiersProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/tiers/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/tiers/delete/${id}`,
           {
             headers: { token: token },
           }

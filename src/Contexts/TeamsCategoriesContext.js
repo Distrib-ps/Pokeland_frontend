@@ -13,7 +13,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (errorCallback, subTeamsGeneralTierId) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/teams-categories/tiers/${subTeamsGeneralTierId}`,
+          `https://pokelandbackend-server.herokuapp.com/teams-categories/tiers/${subTeamsGeneralTierId}`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (errorCallback, subTeamsGeneralTierId, setContent) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/teams-categories/tiers/${subTeamsGeneralTierId}`,
+          `https://pokelandbackend-server.herokuapp.com/teams-categories/tiers/${subTeamsGeneralTierId}`,
           {
             headers: { token: token },
           }
@@ -49,7 +49,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/teams-categories/add",
+          "https://pokelandbackend-server.herokuapp.com/teams-categories/add",
           body,
           {
             headers: { token: token },
@@ -79,7 +79,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/teams-categories/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/teams-categories/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -113,7 +113,7 @@ const TeamsCategoriesProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/teams-categories/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/teams-categories/delete/${id}`,
           {
             headers: { token: token },
           }

@@ -14,7 +14,7 @@ const ForumTopicsProvider = ({ children }) => {
       console.log(forumCategoryId);
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/forum-topics/topic/${forumCategoryId}`,
+          `https://pokelandbackend-server.herokuapp.com/forum-topics/topic/${forumCategoryId}`,
           {
             headers: { token: token },
           }
@@ -33,7 +33,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          "https://pokelandbackend.herokuapp.com/forum-topics/all",
+          "https://pokelandbackend-server.herokuapp.com/forum-topics/all",
           {
             headers: { token: token },
           }
@@ -51,7 +51,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/forum-topics/add",
+          "https://pokelandbackend-server.herokuapp.com/forum-topics/add",
           body,
           {
             headers: { token: token },
@@ -80,7 +80,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/forum-topics/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/forum-topics/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -118,7 +118,7 @@ const ForumTopicsProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/forum-topics/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/forum-topics/delete/${id}`,
           {
             headers: { token: token },
           }

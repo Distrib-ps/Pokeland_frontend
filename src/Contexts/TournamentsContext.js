@@ -13,7 +13,7 @@ const TournamentsProvider = ({ children }) => {
     async (errorCallback, tournamentsCategoryId) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/tournaments/tournaments/${tournamentsCategoryId}`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments/tournaments/${tournamentsCategoryId}`,
           {
             headers: { token: token },
           }
@@ -31,7 +31,7 @@ const TournamentsProvider = ({ children }) => {
     async (errorCallback, tournamentsCategoryId, setContent) => {
       try {
         const responseServer = await axios.get(
-          `https://pokelandbackend.herokuapp.com/tournaments/tournaments/${tournamentsCategoryId}`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments/tournaments/${tournamentsCategoryId}`,
           {
             headers: { token: token },
           }
@@ -49,7 +49,7 @@ const TournamentsProvider = ({ children }) => {
     async (errorCallback) => {
       try {
         const responseServer = await axios.get(
-          "https://pokelandbackend.herokuapp.com/tournaments/all",
+          "https://pokelandbackend-server.herokuapp.com/tournaments/all",
           {
             headers: { token: token },
           }
@@ -67,7 +67,7 @@ const TournamentsProvider = ({ children }) => {
     async (body, errorCallback, successCallback) => {
       try {
         const response = await axios.post(
-          "https://pokelandbackend.herokuapp.com/tournaments/add",
+          "https://pokelandbackend-server.herokuapp.com/tournaments/add",
           body,
           {
             headers: { token: token },
@@ -97,7 +97,7 @@ const TournamentsProvider = ({ children }) => {
     async (body, id, errorCallback, successCallback) => {
       try {
         const response = await axios.put(
-          `https://pokelandbackend.herokuapp.com/tournaments/update/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments/update/${id}`,
           body,
           {
             headers: { token: token },
@@ -135,7 +135,7 @@ const TournamentsProvider = ({ children }) => {
     async (id, errorCallback, successCallback) => {
       try {
         await axios.delete(
-          `https://pokelandbackend.herokuapp.com/tournaments/delete/${id}`,
+          `https://pokelandbackend-server.herokuapp.com/tournaments/delete/${id}`,
           {
             headers: { token: token },
           }
