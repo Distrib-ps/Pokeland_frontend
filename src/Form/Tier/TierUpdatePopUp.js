@@ -9,6 +9,10 @@ import { TiersContext } from "../../Contexts/TiersContext";
 function TierUpdatePopUp({ tier, closePopUp }) {
   const [tierDate, setTierDate] = useState({ value: tier.date, error: false });
   const [tierName, setTierName] = useState({ value: tier.name, error: false });
+  const [tierSelectName, setTierSelectName] = useState({
+    value: tier.selectName,
+    error: false,
+  });
   const [error, setError] = useState({ message: "", error: false });
   const [success, setSuccess] = useState({ message: "", success: false });
 
@@ -17,13 +21,14 @@ function TierUpdatePopUp({ tier, closePopUp }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (tierDate.error || tierName.error) {
+    if (tierDate.error || tierName.error || tierSelectName.error) {
       setError({ message: "L'un des champs est mal remplis.", error: true });
       setSuccess({ message: "", success: false });
     } else {
       const body = {
         date: tierDate.value,
         name: tierName.value,
+        selectName: tierSelectName.value,
       };
 
       updateTier(body, tier._id, setError, setSuccess);
@@ -50,6 +55,12 @@ function TierUpdatePopUp({ tier, closePopUp }) {
             <TierName
               onBlur={setTierName}
               value={tierName.value}
+              disabled={false}
+              label={true}
+            />
+            <tierSelectName
+              onBlur={setTierSelectName}
+              value={tierSelectName.value}
               disabled={false}
               label={true}
             />

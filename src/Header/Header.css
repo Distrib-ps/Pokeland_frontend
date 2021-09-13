@@ -8,6 +8,7 @@
   justify-content: space-between;
   background-color: var(--header-background-color);
   margin-bottom: 0.5rem;
+  height: 15vh;
 }
 
 .header_logo {

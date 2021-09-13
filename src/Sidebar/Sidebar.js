@@ -46,7 +46,14 @@ function Sidebar() {
 
   if (tiers.length !== 0) {
     optionsList = tiers.map((tier) => {
-      return tier.date + "/" + tier.name;
+      let name;
+      if (!tier.selectName) {
+        name = tier.date + "/" + tier.name;
+      }
+      if (tier.selectName) {
+        name = tier.selectName;
+      }
+      return name;
     });
   }
 

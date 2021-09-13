@@ -86,6 +86,43 @@ const UserProvider = ({ children }) => {
     []
   );
 
+  const updateUserNoFile = useCallback(
+    async (body, id, errorCallback, successCallback) => {
+      try {
+        const response = await axios.put(
+          `https://pokelandbackend-server.herokuapp.com/user/update/${id}`,
+          body
+        );
+        setUser(response.data);
+        if (users.length !== 0) {
+          setUsers((prevUsers) => {
+            const existingUsers = [...prevUsers];
+            const existingUser = existingUsers.find(
+              (user) => user._id === response.data._id
+            );
+            existingUser.pseudo = response.data.pseudo;
+            existingUser.email = response.data.email;
+            existingUser.password = response.data.password;
+            existingUser.profilePicture = response.data.profilePicture;
+            return existingUsers;
+          });
+        }
+        errorCallback({ message: "", error: false });
+        successCallback({
+          message: "L'utilisateur a bien été modifié.",
+          success: true,
+        });
+      } catch (err) {
+        errorCallback({
+          message: "Votre profil n'a pas pu être modifié.",
+          error: true,
+        });
+        successCallback({ message: "", success: false });
+      }
+    },
+    [users]
+  );
+
   const updateUser = useCallback(
     async (token, body, id, errorCallback, successCallback) => {
       try {
@@ -265,6 +302,7 @@ const UserProvider = ({ children }) => {
         deleteUserList,
         updateUserAdmin,
         getUserById,
+        updateUserNoFile,
       }}
     >
       {children}

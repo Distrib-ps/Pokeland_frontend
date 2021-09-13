@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:wght@400;700&display=swap");
+
 :root {
   --main-dark-color: #414141;
   --main-light-color: #f8f8f8;
@@ -14,10 +16,10 @@ body,
 html {
   height: 100vh;
   font-size: 16px;
-  font-family: sans-serif;
+  font-family: "Merriweather", serif;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -28,6 +30,10 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+button {
+  font-family: "Lobster", cursive;
 }
 
 .light {

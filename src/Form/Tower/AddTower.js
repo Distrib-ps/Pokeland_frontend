@@ -4,29 +4,46 @@ import Title from "../../Input/Title";
 import Button from "../../Button/Button";
 import File from "../../Input/File";
 import TextEditor from "../../Input/TextEditor";
+import Link from "../../Input/Link";
 
 function AddTower() {
   const [title, setTitle] = useState({ value: "", error: true });
   const [description, setDescription] = useState({ value: "", error: true });
   const [file, setFile] = useState({ value: "", error: false });
+  const [link, setLink] = useState({ value: "", error: true });
   const [error, setError] = useState({ message: "", error: false });
   const [success, setSuccess] = useState({ message: "", success: false });
 
-  const { addTower } = useContext(TowersContext);
+  const { addTower, addTowerNoFile } = useContext(TowersContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (title.error || description.error || file.error) {
-      setError({ message: "L'un des champs est mal remplis.", error: true });
-      setSuccess({ message: "", success: false });
-    } else {
-      const body = new FormData();
-      body.append("title", title.value);
-      body.append("description", description.value);
-      body.append("picture", file.value);
+    if (link.value) {
+      if (title.error || description.error || link.error) {
+        setError({ message: "L'un des champs est mal remplis.", error: true });
+        setSuccess({ message: "", success: false });
+      } else {
+        const body = {
+          title: title.value,
+          description: description.value,
+          picture: link.value,
+        };
 
-      addTower(body, setError, setSuccess);
+        addTowerNoFile(body, setError, setSuccess);
+      }
+    } else {
+      if (title.error || description.error || file.error) {
+        setError({ message: "L'un des champs est mal remplis.", error: true });
+        setSuccess({ message: "", success: false });
+      } else {
+        const body = new FormData();
+        body.append("title", title.value);
+        body.append("description", description.value);
+        body.append("picture", file.value);
+
+        addTower(body, setError, setSuccess);
+      }
     }
   };
 
@@ -40,6 +57,7 @@ function AddTower() {
         <File name="file" hidden={false} disabled={false} onChange={setFile}>
           Ajoutez une image :
         </File>
+        <Link onBlur={setLink} value="" disabled={false} label={true} />
         <TextEditor onBlur={setDescription} value="" />
         <Button>Ajouter</Button>
       </form>

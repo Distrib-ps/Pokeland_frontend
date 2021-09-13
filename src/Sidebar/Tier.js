@@ -5,7 +5,7 @@ function Tier({ item }) {
   return (
     <li className={`tier_item tier_item-light`}>
       <img
-        src={`https://img.pokemondb.net/sprites/bank/normal/${item[1]
+        src={`https://img.pokemondb.net/sprites/home/normal/${item[1]
           .toLowerCase()
           .trim()}.png`}
         alt={`${item[1]}`}

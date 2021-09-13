@@ -4,10 +4,15 @@ import TierDate from "../../Input/TierDate";
 import Button from "../../Button/Button";
 import { TiersContext } from "../../Contexts/TiersContext";
 import TierName from "../../Input/TierName";
+import TierSelectName from "../../Input/TierSelectName";
 
 function AddTier() {
   const [tierDate, setTierDate] = useState({ value: "", error: true });
   const [tierName, setTierName] = useState({ value: "", error: true });
+  const [tierSelectName, setTierSelectName] = useState({
+    value: "",
+    error: true,
+  });
   const [error, setError] = useState({ message: "", error: false });
   const [success, setSuccess] = useState({ message: "", success: false });
 
@@ -23,6 +28,7 @@ function AddTier() {
       const body = {
         date: tierDate.value,
         name: tierName.value,
+        selectName: tierSelectName.value,
       };
 
       addTier(body, setError, setSuccess);
@@ -37,6 +43,12 @@ function AddTier() {
       <form onSubmit={handleSubmit}>
         <TierDate onBlur={setTierDate} value="" disabled={false} label={true} />
         <TierName onBlur={setTierName} value="" disabled={false} label={true} />
+        <TierSelectName
+          onBlur={setTierSelectName}
+          value=""
+          disabled={false}
+          label={true}
+        />
         <Button>Ajouter</Button>
       </form>
       {error.error && <p className={`form_error`}>{error.message}</p>}

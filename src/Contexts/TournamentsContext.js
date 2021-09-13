@@ -63,6 +63,36 @@ const TournamentsProvider = ({ children }) => {
     [token]
   );
 
+  const addTournamentNoFile = useCallback(
+    async (body, errorCallback, successCallback) => {
+      try {
+        const response = await axios.post(
+          "https://pokelandbackend-server.herokuapp.com/tournaments/addNoFile",
+          body,
+          {
+            headers: { token: token },
+          }
+        );
+        setTournaments((prevTournaments) => {
+          return [response.data, ...prevTournaments];
+        });
+        errorCallback({ message: "", error: false });
+        successCallback({
+          message: "Le Tournois a bien été enregistré.",
+          success: true,
+        });
+      } catch (err) {
+        errorCallback({
+          message:
+            "L'enregistrement du Tournois a échoué, veuillez recommencer.",
+          error: true,
+        });
+        successCallback({ message: "", success: false });
+      }
+    },
+    [token]
+  );
+
   const addTournament = useCallback(
     async (body, errorCallback, successCallback) => {
       try {
@@ -85,6 +115,44 @@ const TournamentsProvider = ({ children }) => {
         errorCallback({
           message:
             "L'enregistrement du Tournois a échoué, veuillez recommencer.",
+          error: true,
+        });
+        successCallback({ message: "", success: false });
+      }
+    },
+    [token]
+  );
+
+  const updateTournamentNoFile = useCallback(
+    async (body, id, errorCallback, successCallback) => {
+      try {
+        const response = await axios.put(
+          `https://pokelandbackend-server.herokuapp.com/tournaments/updateNoFile/${id}`,
+          body,
+          {
+            headers: { token: token },
+          }
+        );
+        setTournaments((prevTournaments) => {
+          const existingTournaments = [...prevTournaments];
+          const existingTournament = existingTournaments.find(
+            (tournament) => tournament._id === response.data._id
+          );
+          existingTournament.title = response.data.title;
+          existingTournament.categoryName = response.data.categoryName;
+          existingTournament.categoryId = response.data.categoryId;
+          existingTournament.description = response.data.description;
+          existingTournament.picture = response.data.picture;
+          return existingTournaments;
+        });
+        errorCallback({ message: "", error: false });
+        successCallback({
+          message: "Le Tournois a bien été modifié.",
+          success: true,
+        });
+      } catch (err) {
+        errorCallback({
+          message: "Le Tournois n'a pas pu être modifié.",
           error: true,
         });
         successCallback({ message: "", success: false });
@@ -172,6 +240,8 @@ const TournamentsProvider = ({ children }) => {
         deleteTournament,
         getAllTournaments,
         getTournamentsPage,
+        addTournamentNoFile,
+        updateTournamentNoFile,
       }}
     >
       {children}

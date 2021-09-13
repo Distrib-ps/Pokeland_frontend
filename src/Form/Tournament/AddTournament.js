@@ -4,31 +4,50 @@ import Title from "../../Input/Title";
 import Button from "../../Button/Button";
 import File from "../../Input/File";
 import TextEditor from "../../Input/TextEditor";
+import Link from "../../Input/Link";
 
 function AddTournaments({ tournamentsCategory }) {
   const [title, setTitle] = useState({ value: "", error: true });
   const [description, setDescription] = useState({ value: "", error: true });
   const [file, setFile] = useState({ value: "", error: false });
+  const [link, setLink] = useState({ value: "", error: true });
   const [error, setError] = useState({ message: "", error: false });
   const [success, setSuccess] = useState({ message: "", success: false });
 
-  const { addTournament } = useContext(TournamentsContext);
+  const { addTournament, addTournamentNoFile } = useContext(TournamentsContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (title.error || description.error || file.error) {
-      setError({ message: "L'un des champs est mal remplis.", error: true });
-      setSuccess({ message: "", success: false });
-    } else {
-      const body = new FormData();
-      body.append("title", title.value);
-      body.append("description", description.value);
-      body.append("categoryName", tournamentsCategory.name);
-      body.append("categoryId", tournamentsCategory._id);
-      body.append("picture", file.value);
+    if (link.value) {
+      if (title.error || description.error || link.error) {
+        setError({ message: "L'un des champs est mal remplis.", error: true });
+        setSuccess({ message: "", success: false });
+      } else {
+        const body = {
+          title: title.value,
+          description: description.value,
+          categoryName: tournamentsCategory.name,
+          categoryId: tournamentsCategory._id,
+          picture: link.value,
+        };
 
-      addTournament(body, setError, setSuccess);
+        addTournamentNoFile(body, setError, setSuccess);
+      }
+    } else {
+      if (title.error || description.error || file.error) {
+        setError({ message: "L'un des champs est mal remplis.", error: true });
+        setSuccess({ message: "", success: false });
+      } else {
+        const body = new FormData();
+        body.append("title", title.value);
+        body.append("description", description.value);
+        body.append("categoryName", tournamentsCategory.name);
+        body.append("categoryId", tournamentsCategory._id);
+        body.append("picture", file.value);
+
+        addTournament(body, setError, setSuccess);
+      }
     }
   };
 
@@ -42,6 +61,7 @@ function AddTournaments({ tournamentsCategory }) {
         <File name="file" hidden={false} disabled={false} onChange={setFile}>
           Ajoutez une image :
         </File>
+        <Link onBlur={setLink} value="" disabled={false} label={true} />
         <TextEditor onBlur={setDescription} value="" />
         <Button>Ajouter</Button>
       </form>

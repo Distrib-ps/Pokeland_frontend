@@ -86,6 +86,7 @@ const TiersProvider = ({ children }) => {
           );
           existingTier.date = response.data.date;
           existingTier.name = response.data.name;
+          existingTier.selectName = response.data.selectName;
           return existingTiers;
         });
         errorCallback({ message: "", error: false });

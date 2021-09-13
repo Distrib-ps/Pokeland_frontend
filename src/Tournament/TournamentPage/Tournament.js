@@ -9,10 +9,15 @@ function Tournament({ tournament }) {
     setDescription(!description);
   };
 
+  console.log(tournament);
+
   return (
     <div className={`tournament`}>
       <div className={`tournament_page_content`}>
-        {tournament.picture && (
+        {tournament.picture && tournament.picture.includes("http") && (
+          <img src={`${tournament.picture}`} alt="tournament" />
+        )}
+        {tournament.picture && !tournament.picture.includes("http") && (
           <img
             src={`https://pokelandbackend-server.herokuapp.com/static/${tournament.picture}`}
             alt="tournament"

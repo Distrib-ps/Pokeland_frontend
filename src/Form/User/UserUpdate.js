@@ -8,6 +8,7 @@ import Button from "../../Button/Button";
 import File from "../../Input/File";
 import { UserContext } from "../../Contexts/UserContext";
 import UserDeletePopUp from "./UserDeletePopUp";
+import Link from "../../Input/Link";
 
 function UserUpdate({ user }) {
   const [pseudo, setPseudo] = useState({
@@ -23,12 +24,13 @@ function UserUpdate({ user }) {
     error: false,
   });
   const [file, setFile] = useState({ value: "", error: false });
+  const [link, setLink] = useState({ value: "", error: false });
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState({ message: "", error: false });
   const [success, setSuccess] = useState({ message: "", success: false });
   const [popup, setPopup] = useState(null);
 
-  const { updateUser, token } = useContext(UserContext);
+  const { updateUser, token, updateUserNoFile } = useContext(UserContext);
 
   const handleClosePopUp = () => {
     setPopup(null);
@@ -37,18 +39,35 @@ function UserUpdate({ user }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (pseudo.error || email.error || password.error || file.error) {
-      setError({ message: "L'un des champs est mal remplis.", error: true });
-      setSuccess({ message: "", success: false });
-    } else {
-      const body = new FormData();
-      body.append("name", pseudo.value);
-      body.append("email", email.value);
-      body.append("password", password.value);
-      body.append("role", user.role);
-      body.append("file", file.value);
+    if (link.value) {
+      if (pseudo.error || email.error || password.error || link.error) {
+        setError({ message: "L'un des champs est mal remplis.", error: true });
+        setSuccess({ message: "", success: false });
+      } else {
+        const body = {
+          name: pseudo.value,
+          email: email.value,
+          password: password.value,
+          role: user.role,
+          picture: link.value,
+        };
 
-      updateUser(token, body, user._id, setError, setSuccess);
+        updateUserNoFile(body, user._id, setError, setSuccess);
+      }
+    } else {
+      if (pseudo.error || email.error || password.error || file.error) {
+        setError({ message: "L'un des champs est mal remplis.", error: true });
+        setSuccess({ message: "", success: false });
+      } else {
+        const body = new FormData();
+        body.append("name", pseudo.value);
+        body.append("email", email.value);
+        body.append("password", password.value);
+        body.append("role", user.role);
+        body.append("file", file.value);
+
+        updateUser(token, body, user._id, setError, setSuccess);
+      }
     }
   };
 
@@ -99,6 +118,14 @@ function UserUpdate({ user }) {
             value={email.value}
             disabled={disabled}
             labelInput={false}
+          />
+        </span>
+        <span className={`user_profile_email`}>
+          <Link
+            onBlur={setLink}
+            value={link.value}
+            disabled={disabled}
+            label={false}
           />
         </span>
         {user.password && (

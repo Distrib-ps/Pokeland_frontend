@@ -27,6 +27,36 @@ const TowersProvider = ({ children }) => {
     [token]
   );
 
+  const addTowerNoFile = useCallback(
+    async (body, errorCallback, successCallback) => {
+      try {
+        const response = await axios.post(
+          "https://pokelandbackend-server.herokuapp.com/towers/addNoFile",
+          body,
+          {
+            headers: { token: token },
+          }
+        );
+        setTowers((prevTowers) => {
+          return [response.data, ...prevTowers];
+        });
+        errorCallback({ message: "", error: false });
+        successCallback({
+          message: "La Tour de combat a bien été enregistré.",
+          success: true,
+        });
+      } catch (err) {
+        errorCallback({
+          message:
+            "L'enregistrement de la Tour de combat a échoué, veuillez recommencer.",
+          error: true,
+        });
+        successCallback({ message: "", success: false });
+      }
+    },
+    [token]
+  );
+
   const addTower = useCallback(
     async (body, errorCallback, successCallback) => {
       try {
@@ -49,6 +79,42 @@ const TowersProvider = ({ children }) => {
         errorCallback({
           message:
             "L'enregistrement de la Tour de combat a échoué, veuillez recommencer.",
+          error: true,
+        });
+        successCallback({ message: "", success: false });
+      }
+    },
+    [token]
+  );
+
+  const updateTowerNoFile = useCallback(
+    async (body, id, errorCallback, successCallback) => {
+      try {
+        const response = await axios.put(
+          `https://pokelandbackend-server.herokuapp.com/towers/updateNoFile/${id}`,
+          body,
+          {
+            headers: { token: token },
+          }
+        );
+        setTowers((prevTowers) => {
+          const existingTowers = [...prevTowers];
+          const existingTower = existingTowers.find(
+            (tower) => tower._id === response.data._id
+          );
+          existingTower.title = response.data.title;
+          existingTower.description = response.data.description;
+          existingTower.picture = response.data.picture;
+          return existingTowers;
+        });
+        errorCallback({ message: "", error: false });
+        successCallback({
+          message: "La Tour de combat a bien été modifié.",
+          success: true,
+        });
+      } catch (err) {
+        errorCallback({
+          message: "La Tour de combat n'a pas pu être modifié.",
           error: true,
         });
         successCallback({ message: "", success: false });
@@ -131,6 +197,8 @@ const TowersProvider = ({ children }) => {
         getTowers,
         updateTower,
         deleteTower,
+        addTowerNoFile,
+        updateTowerNoFile,
       }}
     >
       {children}
