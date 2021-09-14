@@ -128,3 +128,10 @@ button {
 .ck.ck-editor__main {
   color: var(--main-dark-color);
 }
+
+@media (max-width: 900px) {
+  .html,
+  body {
+    overflow-y: scroll;
+  }
+}
