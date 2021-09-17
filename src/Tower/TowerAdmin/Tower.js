@@ -13,15 +13,6 @@ function Tower({ tower, onDescription }) {
   return (
     <div className={`tower tiwer-light`}>
       <div className={`tower_page_content`}>
-        {tower.picture && tower.picture.includes("http") && (
-          <img src={`${tower.picture}`} alt="actu" />
-        )}
-        {tower.picture && !tower.picture.includes("http") && (
-          <img
-            src={`https://pokelandbackend-server.herokuapp.com/static/${tower.picture}`}
-            alt="actu"
-          />
-        )}
         <div>
           <h3 className={``}>{tower.title}</h3>
           <p className={``}>{tower.date}</p>
