@@ -62,7 +62,6 @@ const TournamentsProvider = ({ children }) => {
     },
     [token]
   );
-
   const addTournamentNoFile = useCallback(
     async (body, errorCallback, successCallback) => {
       try {

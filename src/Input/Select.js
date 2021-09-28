@@ -20,8 +20,11 @@ export default function Select({ optionsList, onChange }) {
       <select value={value.value} onChange={handleChange}>
         {optionsList.length !== 0 &&
           optionsList.map((optionList, index) => (
-            <option value={optionList} key={index}>
-              {optionList}
+            <option
+              value={optionList.tierName ? optionList.tierAddress : optionList}
+              key={index}
+            >
+              {optionList.tierName ? optionList.tierName : optionList}
             </option>
           ))}
       </select>

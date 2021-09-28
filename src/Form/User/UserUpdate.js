@@ -100,7 +100,7 @@ function UserUpdate({ user }) {
               <span
                 className={`user_profile_img`}
                 style={{
-                  backgroundImage: `url(https://pokelandbackend-server.herokuapp.com/static/${user.profilePicture})`,
+                  backgroundImage: `url(http://lcoalhost:8000/static/${user.profilePicture})`,
                 }}
               ></span>
             )}

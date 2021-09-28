@@ -51,7 +51,10 @@ function Sidebar() {
         name = tier.date + "/" + tier.name;
       }
       if (tier.selectName) {
-        name = tier.selectName;
+        name = {
+          tierName: tier.selectName,
+          tierAddress: tier.date + "/" + tier.name,
+        };
       }
       return name;
     });

@@ -1,26 +1,54 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../Button/Button";
-import parse from "html-react-parser";
+import TowerUpdatePopUp from "../../Form/Tower/TowerUpdatePopUp";
+import TowerDeletePopUp from "../../Form/Tower/TowerDeletePopUp";
 
-function Tower({ tower, onDescription }) {
-  const [description, setDescription] = useState(false);
+function Tower({ tower }) {
+  const [popup, setPopup] = useState(null);
+  const [popupDelete, setPopupDelete] = useState(null);
 
-  const handleDescription = () => {
-    setDescription(!description);
-    onDescription();
+  const handleClosePopUp = () => {
+    setPopup(null);
+  };
+
+  const handleClosePopUpDelete = () => {
+    setPopupDelete(null);
   };
 
   return (
-    <div className={`tower tiwer-light`}>
-      <div className={`tower_page_content`}>
-        <div>
-          <h3 className={``}>{tower.title}</h3>
-          <p className={``}>{tower.date}</p>
-          <Button onClick={handleDescription}>Description</Button>
+    <>
+      <div className={`towers_general_tier`}>
+        <p>{tower.title}</p>
+        <div className={`towers_general_tier_navigation`}>
+          <Button
+            onClick={() => {
+              setPopup(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </Button>
+          <Button
+            onClick={() => {
+              setPopupDelete(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </Button>
         </div>
+        {popup && (
+          <TowerUpdatePopUp closePopUp={handleClosePopUp} tower={tower} />
+        )}
+        {popupDelete && (
+          <TowerDeletePopUp
+            closePopUp={handleClosePopUpDelete}
+            towerId={tower._id}
+          />
+        )}
       </div>
-      {description && <div className={``}>{parse(tower.description)}</div>}
-    </div>
+    </>
   );
 }
 
