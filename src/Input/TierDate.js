@@ -11,7 +11,7 @@ function TierDate({ onBlur, value, disabled, label }) {
       <Input
         type="text"
         name="date"
-        label="Entrez une date :"
+        label="Entrez la date récupérée sur smogon : "
         placeholder="ex: 2021-05"
         test={test}
         errorMessage="La date doit doit ête au format : année-mois. Ex : 2021-05"
