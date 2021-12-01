@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import TierDate from "../../Input/TierDate";
 import TierName from "../../Input/TierName";
+import TierSelectName from "../../Input/TierSelectName";
 import { TiersContext } from "../../Contexts/TiersContext";
 
 function TierUpdatePopUp({ tier, closePopUp }) {
@@ -58,7 +59,7 @@ function TierUpdatePopUp({ tier, closePopUp }) {
               disabled={false}
               label={true}
             />
-            <tierSelectName
+            <TierSelectName
               onBlur={setTierSelectName}
               value={tierSelectName.value}
               disabled={false}
